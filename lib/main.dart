@@ -12,6 +12,18 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomeScreen(),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          textTheme: TextTheme(
+            title: TextStyle(
+               fontFamily: 'Tajawal',
+              fontSize: 22.0,
+            )
+          ),
+          centerTitle: true,
+          elevation: 0
+        )
+      ),
     );
   }
 }
