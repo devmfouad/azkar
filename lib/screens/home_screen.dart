@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildSectionItem({required SectionModel model}) {
     return InkWell(
       onTap: () {
-       Navigator.of(context).push(MaterialPageRoute(builder: (context) => SectionDetailScreen(id: model.id!,)));
+       Navigator.of(context).push(MaterialPageRoute(builder: (context) => SectionDetailScreen(id: model.id!,title: model.name!,)));
       },
       child: Container(
         margin: const EdgeInsets.only(top: 12.0),
