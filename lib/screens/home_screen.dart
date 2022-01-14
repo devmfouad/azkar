@@ -1,7 +1,24 @@
+import 'package:azkar/models/section_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<SectionModel> sections = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadSections();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +28,14 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ListView(
-          children: [
-            buildSectionItem(text: "أذكار الصباح"),
-            buildSectionItem(text: "أذكار المساء"),
-            buildSectionItem(text: "أذكار الصلاة"),
-          ],
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+            itemBuilder: (context , index) => buildSectionItem(text: sections[index].name!),
+          itemCount: sections.length,
         ),
       ),
     );
   }
-
 
   Widget buildSectionItem({required String text}) {
     return Container(
@@ -47,5 +61,19 @@ class HomeScreen extends StatelessWidget {
           color: Colors.white,
         ),)),
     );
+  }
+
+
+  loadSections()async{
+    DefaultAssetBundle.of(context).loadString("assets/database/sections_db.json").then((data) {
+      var response = json.decode(data);
+      response.forEach((section) {
+        SectionModel _section = SectionModel.fromJson(section);
+        sections.add(_section);
+      });
+      setState(() {});
+    }).catchError((error) {
+      print(error);
+    });
   }
 }
