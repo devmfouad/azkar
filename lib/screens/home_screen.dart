@@ -28,7 +28,18 @@ class HomeScreen extends StatelessWidget {
       margin: const EdgeInsets.only(top: 12.0),
       width: double.infinity,
       height:  100,
-      color: Colors.red,
+
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Colors.lightGreenAccent,
+            Colors.green,
+            Colors.lightGreen
+          ]
+        )
+      ),
       child: Center(child: Text("$text" ,
         style: TextStyle(
           fontSize: 22.0 ,

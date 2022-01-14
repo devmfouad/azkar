@@ -14,6 +14,7 @@ class App extends StatelessWidget {
       home: HomeScreen(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
+          backgroundColor: Colors.green,
           textTheme: TextTheme(
             title: TextStyle(
                fontFamily: 'Tajawal',
@@ -22,7 +23,8 @@ class App extends StatelessWidget {
           ),
           centerTitle: true,
           elevation: 0
-        )
+        ),
+        scaffoldBackgroundColor: Colors.white
       ),
     );
   }
